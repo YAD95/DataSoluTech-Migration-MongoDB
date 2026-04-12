@@ -1,0 +1,25 @@
+services:
+  serveur_mongo:
+    image: mongo:7
+    container_name: la_base_mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin_medical
+      - MONGO_INITDB_ROOT_PASSWORD=Louvre
+
+  script_python:
+    build: .
+    container_name: mon_script_migration
+    depends_on:
+      - serveur_mongo
+    volumes:
+      - ./:/app
+    environment:
+      - MONGO_HOST=la_base_mongodb
+      - MONGO_USER=admin_medical
+      - MONGO_MDP=Louvre
+volumes:
+  mongo_data:
