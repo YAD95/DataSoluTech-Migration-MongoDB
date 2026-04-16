@@ -1,3 +1,4 @@
+ 🇬🇧 English| readme in french 👉 [🇫🇷 Français](README_FR.md)
 # 🏥 DataSoluTech – Medical Data Migration & Scalability
 
 Project carried out as part of the **Data Engineer – OpenClassrooms** training program.
