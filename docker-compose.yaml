@@ -10,6 +10,8 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+    networks:
+      - healthcare_net 
 
   script_python:
     build: .
@@ -20,7 +22,14 @@ services:
       - ./:/app
     environment:
       - MONGO_HOST=la_base_mongodb
-      - MONGO_USER=admin_medical
-      - MONGO_MDP=Louvre
+      - MONGO_USER=${MONGO_ROOT_USER}     
+      - MONGO_MDP=${MONGO_ROOT_PASSWORD}  
+    networks:
+      - healthcare_net 
+
+networks:
+  healthcare_net:
+    driver: bridge
+
 volumes:
   mongo_data:
